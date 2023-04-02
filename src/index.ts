@@ -1,9 +1,14 @@
 import express from 'express'
 import * as dotenv from 'dotenv'
+import loginRoute from './routes/auth/userLogin.route'
+import registerRoute from './routes/auth/userRegister.route'
 dotenv.config()
-
 const app = express()
 const PORT = process.env.PORT ?? 3000
+
+app.use(express.json())
+app.use(registerRoute)
+app.use(loginRoute)
 
 app.get('/', (_, res) => {
   res.send('Hola, Mundo')

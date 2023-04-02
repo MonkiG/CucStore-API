@@ -5,8 +5,8 @@ dotenv.config()
 const pool = mysql.createPool({
   host: 'localhost',
   user: 'root',
-  database: '',
-  password: process.env.PASSWORD_DB
+  database: 'cucstore',
+  password: 'RAHA1234'
 })
 
 export default pool
