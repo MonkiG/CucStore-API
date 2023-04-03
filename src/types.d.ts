@@ -9,10 +9,10 @@ export interface IProducto {
 }
 
 export interface IUsuario {
-  id: string | number
+  id?: string | number
   nombre: string
   apellido: string
   correo: string
   contraseña: string
-  imgURL: string
+  imgURL?: string
 }
