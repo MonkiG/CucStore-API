@@ -22,7 +22,7 @@ export function loginController (req: Request, res: Response): void {
         sub: 'login',
         id: objectRowFix[0].id,
         correo,
-        exp: 60 * 60 * 24 * 31
+        exp: Math.floor(Date.now() / 1000) + (60 * 60 * 7 * 31)
       }
       if (match) {
         const token = jwt.sign(payload, secret)

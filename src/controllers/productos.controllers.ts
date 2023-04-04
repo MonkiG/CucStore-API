@@ -1,13 +1,9 @@
 import { Request, Response } from 'express'
 import pool from '../bdConnection'
-
-/* TODO: AGREGAR VALIDACION DE TOKENS DE USUARIO */
+import { IRequestItem } from '../types'
 
 export function addUserProduct (req: Request, res: Response): void {
-  console.log('here')
-
-  const { userId } = req.params
-  const { nombre, descripcion, precio, imgUrl, categoria } = req.body;
+  const { nombre, descripcion, precio, imgUrl, categoria, userId } = req.body;
 
   (async () => {
     try {
@@ -22,7 +18,7 @@ export function addUserProduct (req: Request, res: Response): void {
 }
 
 export function getUserProducts (req: Request, res: Response): void {
-  const { userId } = req.params;
+  const { userId } = req.body;
 
   (async () => {
     const rows = await pool.query('SELECT * FROM TProductos WHERE TUsuarios_id = ?', [userId])
@@ -37,7 +33,8 @@ export function getUserProducts (req: Request, res: Response): void {
 }
 
 export function deleteUserProduct (req: Request, res: Response): void {
-  const { userId, productId } = req.params;
+  const { userId } = req.body
+  const { productId } = req.params;
 
   (async () => {
     try {
@@ -55,6 +52,40 @@ export function deleteUserProduct (req: Request, res: Response): void {
 
 // }
 
-// export function getAllProducts (): void {
+export function getAllProducts (_req: Request, res: Response): void {
+  (async () => {
+    try {
+      const [rows] = await pool.query(`SELECT TUsuarios.id as usuarioId, TUsuarios.nombre as usuarioNombre, TUsuarios.Apellido as usuarioApellido, 
+      TProductos.id as productoId, TProductos.nombre as productoNombre, TProductos.precio as productoPrecio, TProductos.puntaje as productoPuntaje, TProductos.imgUrl as productoImgUrl,
+      TCategoria.id as categoriaId, TCategoria.categoria as nombreCategoria
+      FROM ((TUsuarios 
+      INNER JOIN TProductos ON TProductos.TUsuarios_id = TUsuarios.id)
+      INNER JOIN TCategoria ON TProductos.TCategoria_id = TCategoria.id)`)
+      const data = JSON.parse(JSON.stringify(rows))
 
-// }
+      const ordenatedData = data.map((item: IRequestItem) => {
+        return {
+          usuario: {
+            id: item.usuarioId,
+            nombre: item.usuarioNombre,
+            apellido: item.usuarioApellido,
+            producto: {
+              id: item.productId,
+              nombre: item.productoNombre,
+              precio: item.productoPrecio,
+              puntaje: item.productoPuntaje,
+              categoria: {
+                id: item.categoriaId,
+                nombre: item.nombreCategoria
+              }
+            }
+          }
+        }
+      })
+
+      res.status(200).send(ordenatedData)
+    } catch (error) {
+      res.status(500).json({ mensaje: 'Error en el servidor', error })
+    }
+  })().catch(error => res.status(500).json({ mensaje: 'Error en el servidor', error }))
+}

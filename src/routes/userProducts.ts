@@ -1,13 +1,14 @@
 import { Router } from 'express'
 import { addUserProduct, getUserProducts, deleteUserProduct } from '../controllers/productos.controllers'
+import { verifyToken } from '../middlewares/verifyToken'
 const router = Router()
 
-router.get('/api/productos/usuario/:userId', getUserProducts)
+router.get('/api/usuario/productos', verifyToken, getUserProducts)
 
-router.post('/api/productos/usuario/:userId', addUserProduct)
+router.post('/api/usuario/productos', verifyToken, addUserProduct)
 
-// router.put('/api/productos/usuario/:userId/:productId', editUserProduct)
+// router.put('/api/usuario/productos/:productId', editUserProduct)
 
-router.delete('/api/productos/usuario/:userId/:productId', deleteUserProduct)
+router.delete('/api/usuario/productos/:productId', verifyToken, deleteUserProduct)
 
 export default router
