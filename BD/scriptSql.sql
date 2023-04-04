@@ -26,7 +26,7 @@ CREATE TABLE IF NOT EXISTS `CucStore`.`TUsuarios` (
   `correoUdg` VARCHAR(255) NOT NULL,
   `contraseña` VARCHAR(100) NOT NULL,
   `apellido` VARCHAR(45) NOT NULL,
-  `imgUrl` VARCHAR(100),
+  `imgUrl` VARCHAR(100) NULL,
   PRIMARY KEY (`id`))
 ENGINE = InnoDB;
 
@@ -50,10 +50,10 @@ CREATE TABLE IF NOT EXISTS `CucStore`.`TProductos` (
   `nombre` VARCHAR(45) NOT NULL,
   `descripcion` TEXT(100) NOT NULL,
   `precio` FLOAT NOT NULL,
-  `puntaje` INT NOT NULL,
+  `puntaje` FLOAT NOT NULL,
   `TUsuarios_id` INT NOT NULL,
   `TCategoria_id` INT NOT NULL,
-  `imgUrl` VARCHAR(45) NOT NULL,
+  `imgUrl` VARCHAR(45)  NULL,
   PRIMARY KEY (`Id`, `TUsuarios_id`, `TCategoria_id`),
   INDEX `fk_TArticulos_TUsuarios_idx` (`TUsuarios_id` ASC) VISIBLE,
   INDEX `fk_TArticulos_TCategoria1_idx` (`TCategoria_id` ASC) VISIBLE,
