@@ -1,5 +1,6 @@
 import express from 'express'
 import * as dotenv from 'dotenv'
+import cors from 'cors'
 import loginRoute from './routes/auth/userLogin.route'
 import registerRoute from './routes/auth/userRegister.route'
 import userProductsRoutes from './routes/userProducts'
@@ -8,6 +9,7 @@ dotenv.config()
 const app = express()
 const PORT = process.env.PORT ?? 3000
 
+app.use(cors())
 app.use(express.json())
 app.use(registerRoute)
 app.use(loginRoute)
