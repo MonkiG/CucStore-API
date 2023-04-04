@@ -1,5 +1,12 @@
 import jwt from 'jsonwebtoken'
-type userId = number | string
+
+export interface IDataToUpdate {
+  nombre?: string
+  descripcion?: string
+  precio?: string | number
+  imgUrl?: string
+  categoriaId?: string | number
+}
 export interface IProducto {
   id: userId
   nombre: string
