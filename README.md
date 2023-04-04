@@ -16,7 +16,7 @@ _We're still working on the API._
 **The path '/api/usuario/' receives a token in the request headers, which is provided by the API during login."**
 
 * "/api/usuario/productos": GET and POST their products if the user's token is valid (method: GET and POST)
-* "/api/usuario/productos/:productId": Receives the product ID to be deleted or updated if the user's token is valid (method: delete and put (not implemented yet))
+* "/api/usuario/productos/:productId": Receives the product ID to be deleted or updated if the user's token is valid (method: delete and put)
 
 ## Libraries used
 * Express
@@ -24,8 +24,10 @@ _We're still working on the API._
 * jsonwebtoken
 * mysql2
 * dotenv
+* cors
 
 ### To do
-* Validate user's Token.
-* Implement all the CRUD features.
+* Modularize code to make it cleaner
+* Write unit tests
+* Validate input info
 * Implement Web Socket to online chat.
