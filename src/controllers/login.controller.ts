@@ -7,7 +7,7 @@ export function loginController (req: Request, res: Response): void {
   const { correo, contraseña } = req.body
 
   const loginProcess = async (): Promise<void> => {
-    const [rows] = await pool.query('SELECT correoUdg, contraseña FROM TUsuarios WHERE correoUdg = ?', [correo])
+    const [rows] = await pool.query('SELECT correoUdg, contraseña, id FROM TUsuarios WHERE correoUdg = ?', [correo])
     const objectRowFix = JSON.parse(JSON.stringify(rows))
 
     if (Object.keys(objectRowFix).length === 0) {
@@ -20,6 +20,7 @@ export function loginController (req: Request, res: Response): void {
       const secret = process.env.SECRET ?? '63756373746f7265617069736563726574'
       const payload = {
         sub: 'login',
+        id: objectRowFix[0].id,
         correo,
         exp: 60 * 60 * 24 * 31
       }
@@ -37,5 +38,5 @@ export function loginController (req: Request, res: Response): void {
     }
   }
 
-  loginProcess().catch(error => console.error(error))
+  loginProcess().catch(error => res.status(500).json({ mensaje: 'Error en el servido', error }))
 }
