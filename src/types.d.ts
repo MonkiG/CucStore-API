@@ -1,42 +1,30 @@
 import jwt from 'jsonwebtoken'
 
-export interface IDataToUpdate {
-  nombre?: string
-  descripcion?: string
-  precio?: string | number
-  imgUrl?: string
-  categoriaId?: string | number
-}
-export interface IProducto {
-  id: userId
-  nombre: string
-  descripcion: string
-  precio: number
-  puntaje?: number
-  imgUrl: string
-  categoria: string | number
-}
-export interface TokenData extends jwt.JWTPayload {
-  correo: string
-  id: string | number
-}
+type correoValido = `${String}@alumnos.udg.mx` | `${String}@academicos.udg.mx`
+type imagenValida = `${String}.png` | `${String}.jpg` | `${String}.jpeg`
+type contraseñaEncriptada = string & { readonly _brand: unique symbol }
+type categoria = 'salado' | 'dulce' | 'otro'
 
-export interface IRequestItem {
-  usuarioId: number
-  usuarioNombre: string
-  usuarioApellido: string
-  productId: number
-  productoNombre: string
-  productoPrecio: number
-  productoPuntaje: number | null
-  categoriaId: number
-  nombreCategoria: string
+export interface TokenData extends jwt.JWTPayload {
+  correo: correoValido
+  id: string
 }
 export interface IUsuario {
-  id?: string | number
-  nombre: string
-  apellido: string
-  correo: string
-  contraseña: string
-  imgURL?: string
+  nombres: String
+  apellidoPaterno: String
+  apellidoMaterno: String
+  nombreMarca?: String
+  correo: correoValido
+  contraseña: contraseñaEncriptada
+  imgUrl?: imagenValida
+  createdAt: Date
+  productos?: Object[]
+  telefonos?: string[]
 }
+
+export type RegistrarUsuario = Omit<IUsuario, 'nombreMarca' | 'contraseñaEncirptada'
+| 'imgUrl' | 'productos' | 'telefonos'> & {
+  contraseña: String
+  isRegistered?: Boolean
+}
+export type LogearUsuario = Pick<RegistrarUsuario, 'correo' | 'contraseña'> & { id: String }

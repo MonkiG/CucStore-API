@@ -22,8 +22,7 @@ _We're still working on the API._
 * Express
 * bcrypt
 * jsonwebtoken
-* mysql2
-* dotenv
+* mongoose
 * cors
 
 ### To do

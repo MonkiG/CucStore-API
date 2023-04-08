@@ -1,18 +1,18 @@
-import { Router } from 'express'
-import { getUserProducts } from '../controllers/productsControllers/getUserProducts.controller'
-import { addUserProduct } from '../controllers/productsControllers/addUserProduct.controller'
-import { editUserProductById } from '../controllers/productsControllers/editUserProductById.controller'
-import { deleteUserProductById } from '../controllers/productsControllers/deleteUserProductById.controller'
-import { verifyToken } from '../middlewares/verifyToken'
+// import { Router } from 'express'
+// import { getUserProducts } from '../controllers/productsControllers/getUserProducts.controller'
+// import { addUserProduct } from '../controllers/productsControllers/addUserProduct.controller'
+// import { editUserProductById } from '../controllers/productsControllers/editUserProductById.controller'
+// import { deleteUserProductById } from '../controllers/productsControllers/deleteUserProductById.controller'
+// import { verifyToken } from '../middlewares/verifyToken'
 
-const router = Router()
+// const router = Router()
 
-router.get('/api/usuario/productos', verifyToken, getUserProducts)
+// router.get('/api/usuario/productos', verifyToken, getUserProducts)
 
-router.post('/api/usuario/productos', verifyToken, addUserProduct)
+// router.post('/api/usuario/productos', verifyToken, addUserProduct)
 
-router.put('/api/usuario/productos/:productId', verifyToken, editUserProductById)
+// router.put('/api/usuario/productos/:productId', verifyToken, editUserProductById)
 
-router.delete('/api/usuario/productos/:productId', verifyToken, deleteUserProductById)
+// router.delete('/api/usuario/productos/:productId', verifyToken, deleteUserProductById)
 
-export default router
+// export default router
