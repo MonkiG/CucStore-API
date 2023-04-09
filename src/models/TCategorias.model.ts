@@ -2,7 +2,9 @@ import mongoose from 'mongoose'
 import { categoria } from '../types'
 
 const TCategoriasSchema = new mongoose.Schema<categoria>({
-
+  nombre: { type: String, required: true },
+  descripcion: { type: String, required: true },
+  producto: [{ type: mongoose.Schema.Types.ObjectId, ref: 'TProducto' }]
 })
 
 TCategoriasSchema.set('toJSON', {

@@ -1,15 +1,15 @@
-import { IUsuarioLogin } from '../../types'
+
 import app from '../../app'
 import request from 'supertest'
 
 describe('POST /api/auth/login', () => {
   describe('Correct responses', () => {
     const randomNumber = Math.floor(Math.random() * 100)
-    const user1: IUsuarioLogin = {
-      correo: 'test.jest5086@alumnos.udg.mx',
-      contraseña: 'some jest pasword'
+    const user1 = {
+      correo: 'ramon.hernandez5086@alumnos.udg.mx',
+      contraseña: 'RAHA1234'
     }
-    const user2: IUsuarioLogin = {
+    const user2 = {
       correo: `ramon.hernandez${randomNumber}@alumnos.udg.mx`,
       contraseña: 'RAHA1234'
     }

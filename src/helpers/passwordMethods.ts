@@ -1,5 +1,9 @@
 import bcrypt from 'bcrypt'
-export async function validatePassword (originalPassword: string, hashPassword: string): Promise<boolean> {
+
+export async function validatePassword (originalPassword: string, hashPassword: string | undefined): Promise<boolean> {
+  if (typeof hashPassword === 'undefined') {
+    throw new Error('No se encontro la contraseña')
+  }
   const match = await bcrypt.compare(originalPassword, hashPassword)
   return match
 }

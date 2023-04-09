@@ -47,12 +47,12 @@ describe('POST /api/auth/register', () => {
   })
 
   describe('Wrong responses', () => {
-    test('Should respond with status 400', async () => {
+    test('Should respond with status 401', async () => {
       const response = await request(app)
         .post('/api/auth/register')
         .send({})
         .set('Content-type', 'application/json')
-      expect(response.statusCode).toBe(400)
+      expect(response.statusCode).toBe(401)
     })
   })
 })

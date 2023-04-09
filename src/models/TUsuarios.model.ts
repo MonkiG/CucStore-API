@@ -14,4 +14,11 @@ const TUsuarioSchema = new mongoose.Schema<IUsuario>({
   telefonos: [{ type: String, default: null }]
 })
 
+TUsuarioSchema.set('toJSON', {
+  transform: (_document, returnedObject) => {
+    returnedObject.id = returnedObject._id
+    delete returnedObject._id
+    delete returnedObject.__v
+  }
+})
 export const Usuario = mongoose.model('TUsuario', TUsuarioSchema)

@@ -1,8 +1,8 @@
-// import { Router } from 'express'
-// import { getAllProducts } from '../controllers/productsControllers/getAllUsersProducts.controller'
+import { Router } from 'express'
+import { getAllProducts } from '../controllers/productsControllers/getAllUsersProducts.controller'
 
-// const router = Router()
+const router = Router()
 
-// router.get('/api/productos', getAllProducts)
+router.get('/api/productos', getAllProducts)
 
-// export default router
+export default router

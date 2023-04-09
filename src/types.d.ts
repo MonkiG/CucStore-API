@@ -1,30 +1,39 @@
 import jwt from 'jsonwebtoken'
 
-type correoValido = `${String}@alumnos.udg.mx` | `${String}@academicos.udg.mx`
-type imagenValida = `${String}.png` | `${String}.jpg` | `${String}.jpeg`
-type contraseñaEncriptada = string & { readonly _brand: unique symbol }
 type categoria = 'salado' | 'dulce' | 'otro'
 
 export interface TokenData extends jwt.JWTPayload {
-  correo: correoValido
+  correo: string
   id: string
 }
+
+export interface registrarProducto {
+  nombre: string
+  descripcion: string
+  precio: Number
+  imgUrl: string
+  usuario: string | mongoose.Schema.Types.ObjectId
+  categoria: string[] | mongoose.Schema.Types.ObjectId[]
+}
+export interface IProducto extends registrarProducto {
+  puntaje?: Number
+}
 export interface IUsuario {
-  nombres: String
-  apellidoPaterno: String
-  apellidoMaterno: String
-  nombreMarca?: String
-  correo: correoValido
-  contraseña: contraseñaEncriptada
-  imgUrl?: imagenValida
+  nombres: string
+  apellidoPaterno: string
+  apellidoMaterno: string
+  nombreMarca?: string
+  correo: string
+  contraseña: string
+  imgUrl?: string
   createdAt: Date
   productos?: Object[]
   telefonos?: string[]
 }
 
-export type RegistrarUsuario = Omit<IUsuario, 'nombreMarca' | 'contraseñaEncirptada'
+export type RegistrarUsuario = Omit<IUsuario, 'nombreMarca'
 | 'imgUrl' | 'productos' | 'telefonos'> & {
-  contraseña: String
+
   isRegistered?: Boolean
 }
-export type LogearUsuario = Pick<RegistrarUsuario, 'correo' | 'contraseña'> & { id: String }
+export type LogearUsuario = Pick<RegistrarUsuario, 'correo' | 'contraseña'> & { id: string }
