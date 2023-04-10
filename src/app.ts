@@ -3,12 +3,18 @@ import cors from 'cors'
 import authRoutes from './routes/auth.routes'
 import userProductsRoutes from './routes/userProducts'
 import productsRoutes from './routes/products'
-
-
 import * as dotenv from 'dotenv'
+import { Categoria } from './models/TCategorias.model'
+import * as BD from './helpers/bdActions'
 dotenv.config();
 
-
+(async () => {
+  await BD.connectBD()
+  await Categoria.findOneAndUpdate({ nombre: 'dulce' }, { descripcion: 'Productos dulces' }, { upsert: true, new: true, setDefaultOnInser: true })
+  await Categoria.findOneAndUpdate({ nombre: 'salado' }, { descripcion: 'Productos salados' }, { upsert: true, new: true, setDefaultOnInser: true })
+  await Categoria.findOneAndUpdate({ nombre: 'otro' }, { descripcion: 'Productos variados' }, { upsert: true, new: true, setDefaultOnInser: true })
+  await BD.disconnectBD()
+})().catch(err => console.error(err))
 
 const app = express()
 
@@ -20,7 +26,11 @@ app.use(productsRoutes)
 app.use(userProductsRoutes)
 
 app.get('/', (_, res) => {
-  res.send('Hola, Mundo')
+  res.json({
+    auth: ['/api/auth/register', '/api/auth/login'],
+    userProducts: ['/api/usuario/productos', '/api/usuario/productos/:productId'],
+    products: ['/api/productos', '/api/productos/:nombre']
+  })
 })
 
 export default app

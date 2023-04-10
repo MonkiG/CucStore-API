@@ -3,8 +3,7 @@ import * as BD from './../../helpers/bdActions'
 import { Producto } from './../../models/TProductos.model'
 import { Usuario } from './../../models/TUsuarios.model'
 export function deleteUserProductById (req: Request, res: Response): void {
-  const { idUsuario } = req.body
-  const { productId } = req.params;
+  const { idUsuario, productId } = req.body;
 
   (async () => {
     try {
