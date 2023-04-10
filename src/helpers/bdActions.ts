@@ -1,8 +1,9 @@
 import { connect, connection } from 'mongoose'
-import config from '../config/config'
+import * as dotenv from 'dotenv'
+dotenv.config()
 
 export async function connectBD (): Promise<void> {
-  await connect(config.DB.URI, { dbName: config.DB.DB_NAME })
+  await connect(process.env.MONGODB_URI as string, { dbName: process.env.MONGODB_NAME as string })
 }
 
 export async function disconnectBD (): Promise<void> {

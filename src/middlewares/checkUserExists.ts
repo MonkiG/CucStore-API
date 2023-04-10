@@ -11,7 +11,7 @@ export function checkUserExists (req: Request, res: Response, next: NextFunction
       await connectBD()
       const isRegistered = await Usuario.findOne({ correo }).exec()
 
-      if (isRegistered != null) {
+      if (isRegistered !== null) {
         req.body.isRegistered = true
         await disconnectBD()
         next()
@@ -21,7 +21,7 @@ export function checkUserExists (req: Request, res: Response, next: NextFunction
         next()
       }
     } catch (error) {
-      console.error(error)
+      res.status(500).json({ mensaje: 'error en el la base de datos', error })
     }
   })().catch((err: Error) => {
     res.status(500).json({ mensaje: 'error en el la base de datos', err })

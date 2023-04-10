@@ -18,12 +18,13 @@ export function getAllProducts (_req: Request, res: Response): void {
 
       await BD.disconnectBD()
 
-      if (productos === null) {
-        res.status(404).json({ mensaje: 'No hay productos para mostrar' })
+      if (productos.length > 0) {
+        res.status(200).json(productos)
+
         return
       }
 
-      res.status(200).json(productos)
+      res.status(404).json({ mensaje: 'No hay productos para mostrar' })
     } catch (error) {
       res.status(500).json({ mensaje: 'Error en el servidor', error })
     }

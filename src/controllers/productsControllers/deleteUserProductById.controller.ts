@@ -9,14 +9,13 @@ export function deleteUserProductById (req: Request, res: Response): void {
   (async () => {
     try {
       await BD.connectBD()
-      await Usuario.updateOne({ _id: idUsuario }, { $pull: { productos: productId } })
       const productoEliminado = await Producto.findByIdAndDelete({ _id: productId })
-      await BD.disconnectBD()
-
       if (productoEliminado === null) {
         res.status(404).json({ mensaje: 'Producto no encontrado' })
         return
       }
+      await Usuario.updateOne({ _id: idUsuario }, { $pull: { productos: productId } })
+      await BD.disconnectBD()
 
       res.status(204).json({ mensaje: 'Eliminado con exito' })
     } catch (error) {

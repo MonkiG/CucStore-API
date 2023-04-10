@@ -1,8 +1,10 @@
 
 import jwt from 'jsonwebtoken'
 import { LogearUsuario, RegistrarUsuario } from '../types'
+import * as dotenv from 'dotenv'
+dotenv.config()
 
-const secret = process.env.SECRET ?? '63756373746f7265617069736563726574'
+const secret = process.env.JWT_SECRET as string
 export function registerTokenGenerator ({ nombres, apellidoPaterno, apellidoMaterno, correo }: RegistrarUsuario): string {
   const payload = {
     sub: 'register',

@@ -24,7 +24,7 @@ export function registerController (req: Request, res: Response): void {
         res.status(401).json({ mensaje: 'error en el formato de la información', error })
       }
     }
-  })().catch((err) => console.error(err))
+  })().catch((err) => res.status(500).json({ err }))
 }
 
 export function loginController (req: Request, res: Response): void {
@@ -48,12 +48,12 @@ export function loginController (req: Request, res: Response): void {
           })
         }
       } catch (error) {
-        console.error(error)
+        res.status(500).json({ error })
       };
     } else {
       res.status(404).json({
         mensaje: 'Usuario no registrado'
       })
     };
-  })().catch((err) => console.error(err))
+  })().catch((err) => res.status(500).json({ err }))
 }

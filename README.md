@@ -11,6 +11,7 @@ _We're still working on the API._
 
 ### Products
 * "/api/productos": Get all products from all users (method: GET only)
+* "/api/productos/:nombre": Get all products that match with the parameter ":nombre" (method: GET only)
 
 ### User Products
 **The path '/api/usuario/' receives a token in the request headers, which is provided by the API during login."**
@@ -24,9 +25,9 @@ _We're still working on the API._
 * jsonwebtoken
 * mongoose
 * cors
+* dotenv
 
 ### To do
 * Modularize code to make it cleaner
 * Write unit tests
-* Validate input info
 * Implement Web Socket to online chat.

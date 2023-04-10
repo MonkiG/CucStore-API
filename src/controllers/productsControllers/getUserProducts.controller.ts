@@ -10,7 +10,8 @@ export function getUserProducts (req: Request, res: Response): void {
       await BD.connectBD()
       const productos = await Producto.find({ usuario }).select('-usuario')
       await BD.disconnectBD()
-      if (productos !== null) {
+
+      if (productos.length > 0) {
         res.status(200).json(productos)
         return
       }
