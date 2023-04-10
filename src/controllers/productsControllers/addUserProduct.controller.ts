@@ -1,6 +1,6 @@
 import { Request, Response } from 'express'
-import { añadirProducto } from '../../helpers/serviciosProductos'
-import { toRegistrarProducto } from '../../helpers/utils'
+import { añadirProducto } from './../../helpers/serviciosProductos'
+import { toRegistrarProducto } from './../../helpers/utils'
 
 export function addUserProduct (req: Request, res: Response): void {
   const bodyRequest = req.body

@@ -1,7 +1,7 @@
-import { Producto } from '../models/TProductos.model'
-import { Usuario } from '../models/TUsuarios.model'
-import { registrarProducto } from '../types'
-import * as BD from './../../src/helpers/bdActions'
+import { Producto } from './../models/TProductos.model'
+import { Usuario } from './../models/TUsuarios.model'
+import { registrarProducto } from './../types'
+import * as BD from './bdActions'
 
 export async function añadirProducto (producto: registrarProducto): Promise<void> {
   const registeredProduct = new Producto({

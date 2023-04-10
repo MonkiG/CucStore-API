@@ -1,6 +1,6 @@
 
 import jwt from 'jsonwebtoken'
-import { LogearUsuario, RegistrarUsuario } from '../types'
+import { LogearUsuario, RegistrarUsuario } from './../types'
 import * as dotenv from 'dotenv'
 dotenv.config()
 

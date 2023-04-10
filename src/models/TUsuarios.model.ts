@@ -1,5 +1,5 @@
 import mongoose from 'mongoose'
-import { IUsuario } from '../types'
+import { IUsuario } from './../types'
 
 const TUsuarioSchema = new mongoose.Schema<IUsuario>({
   nombres: { type: String, required: true },

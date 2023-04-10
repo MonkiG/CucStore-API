@@ -1,7 +1,7 @@
 import { NextFunction, Request, Response } from 'express'
-import { Usuario } from '../models/TUsuarios.model'
-import { RegistrarUsuario } from '../types'
-import { connectBD, disconnectBD } from '../helpers/bdActions'
+import { Usuario } from './../models/TUsuarios.model'
+import { RegistrarUsuario } from './../types'
+import { connectBD, disconnectBD } from './../helpers/bdActions'
 
 export function checkUserExists (req: Request, res: Response, next: NextFunction): void {
   const { correo }: RegistrarUsuario = req.body;

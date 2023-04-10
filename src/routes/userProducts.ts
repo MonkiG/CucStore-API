@@ -1,9 +1,9 @@
 import { Router } from 'express'
-import { getUserProducts } from '../controllers/productsControllers/getUserProducts.controller'
-import { addUserProduct } from '../controllers/productsControllers/addUserProduct.controller'
-import { editUserProductById } from '../controllers/productsControllers/editUserProductById.controller'
-import { deleteUserProductById } from '../controllers/productsControllers/deleteUserProductById.controller'
-import { verifyToken } from '../middlewares/verifyToken'
+import { getUserProducts } from './../controllers/productsControllers/getUserProducts.controller'
+import { addUserProduct } from './../controllers/productsControllers/addUserProduct.controller'
+import { editUserProductById } from './../controllers/productsControllers/editUserProductById.controller'
+import { deleteUserProductById } from './../controllers/productsControllers/deleteUserProductById.controller'
+import { verifyToken } from './../middlewares/verifyToken'
 
 const router = Router()
 

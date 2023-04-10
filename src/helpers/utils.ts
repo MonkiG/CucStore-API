@@ -1,4 +1,4 @@
-import { LogearUsuario, RegistrarUsuario, registrarProducto } from '../types'
+import { LogearUsuario, RegistrarUsuario, registrarProducto } from './../types'
 
 export function toRegistrarProducto (object: any): registrarProducto {
   const newProduct: registrarProducto = {

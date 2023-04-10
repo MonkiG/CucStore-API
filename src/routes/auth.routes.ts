@@ -1,6 +1,6 @@
-import { registerController, loginController } from '../controllers/auth.controllers'
+import { registerController, loginController } from './../controllers/auth.controllers'
 import { Router } from 'express'
-import { checkUserExists } from '../middlewares/checkUserExists'
+import { checkUserExists } from './../middlewares/checkUserExists'
 
 const router = Router()
 

@@ -1,8 +1,8 @@
-import { Usuario } from '../models/TUsuarios.model'
-import { hashPassword } from '../helpers/passwordMethods'
-import { LogearUsuario, RegistrarUsuario } from '../types'
+import { Usuario } from './../models/TUsuarios.model'
+import { hashPassword } from './passwordMethods'
+import { LogearUsuario, RegistrarUsuario } from './../types'
 import { toLogearUsuario } from './utils'
-import * as BD from './../helpers/bdActions'
+import * as BD from './bdActions'
 
 export async function registrarUsuario (newUsuario: RegistrarUsuario): Promise<void> {
   const contraseñaEncriptada = await hashPassword(newUsuario.contraseña)

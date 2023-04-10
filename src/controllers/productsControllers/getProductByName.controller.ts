@@ -1,7 +1,7 @@
 import { Request, Response } from 'express'
 import * as BD from './../../helpers/bdActions'
 
-import { Usuario } from '../../models/TUsuarios.model'
+import { Usuario } from './../../models/TUsuarios.model'
 
 export function getProductByName (req: Request, res: Response): void {
   const { nombre } = req.params;

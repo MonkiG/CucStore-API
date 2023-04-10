@@ -1,5 +1,5 @@
 import mongoose from 'mongoose'
-import { categoria } from '../types'
+import { categoria } from './../types'
 
 const TCategoriasSchema = new mongoose.Schema<categoria>({
   nombre: { type: String, required: true },

@@ -1,5 +1,5 @@
 import mongoose from 'mongoose'
-import { IProducto } from '../types'
+import { IProducto } from './../types'
 
 const TProductosSchema = new mongoose.Schema<IProducto>({
   nombre: { type: String, required: true },

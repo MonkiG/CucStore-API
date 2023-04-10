@@ -1,6 +1,6 @@
 import { Request, Response } from 'express'
 import * as BD from './../../helpers/bdActions'
-import { Producto } from '../../models/TProductos.model'
+import { Producto } from './../../models/TProductos.model'
 export function editUserProductById (req: Request, res: Response): void {
   const dataToUpdate = req.body
   const { productId } = req.params;

@@ -1,6 +1,6 @@
 import { NextFunction, Request, Response } from 'express'
 import jwt from 'jsonwebtoken'
-import { TokenData } from '../types'
+import { TokenData } from './../types'
 import * as dotenv from 'dotenv'
 dotenv.config()
 

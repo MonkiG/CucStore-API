@@ -1,8 +1,8 @@
 import { Request, Response } from 'express'
-import { loginTokenGenerator, registerTokenGenerator } from '../helpers/tokenGenerator'
-import { toRegistrarUsuario } from '../helpers/utils'
+import { loginTokenGenerator, registerTokenGenerator } from './../helpers/tokenGenerator'
+import { toRegistrarUsuario } from './../helpers/utils'
 import * as serviciosUsuario from './../helpers/serviciosUsuario'
-import { validatePassword } from '../helpers/passwordMethods'
+import { validatePassword } from './../helpers/passwordMethods'
 
 export function registerController (req: Request, res: Response): void {
   const requestBody = req.body;

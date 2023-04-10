@@ -5,10 +5,9 @@
   "main": "index.js",
   "scripts": {
     "lint": "ts-standard",
-    "start": "node build/index.js",
+    "start": "tsc && node build/index.js",
     "tsc": "tsc",
     "dev": "ts-node-dev src/index.ts",
-    "db": "ts-node-dev BD/bd.ts",
     "test": "jest --detectOpenHandles"
   },
   "keywords": [],

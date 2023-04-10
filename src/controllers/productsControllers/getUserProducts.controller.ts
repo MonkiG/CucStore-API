@@ -1,5 +1,5 @@
 import { Request, Response } from 'express'
-import { Producto } from '../../models/TProductos.model'
+import { Producto } from './../../models/TProductos.model'
 import * as BD from './../../helpers/bdActions'
 
 export function getUserProducts (req: Request, res: Response): void {
