@@ -3,6 +3,7 @@ import cors from 'cors'
 import authRoutes from './routes/auth.routes'
 import userProductsRoutes from './routes/userProducts'
 import productsRoutes from './routes/products'
+import categoriesRoutes from './routes/categories'
 import * as dotenv from 'dotenv'
 import { Categoria } from './models/TCategorias.model'
 import * as BD from './helpers/bdActions'
@@ -20,10 +21,12 @@ const app = express()
 
 app.set('port', process.env.PORT)
 app.use(cors())
-app.use(express.json())
+app.use(express.json({ limit: '10mb' }))
+
 app.use(authRoutes)
 app.use(productsRoutes)
 app.use(userProductsRoutes)
+app.use(categoriesRoutes)
 
 app.get('/', (_, res) => {
   res.json({

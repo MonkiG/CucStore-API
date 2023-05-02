@@ -30,3 +30,10 @@ _We're still working on the API._
 * Modularize code to make it cleaner
 * Write unit tests
 * Implement Web Socket to online chat.
+* Validar correos
+* Recuperar contraseña +
+* Reestablecer contraseña +
+* Get user info by id +
+* Update user info by id +
+* Delete user by id +
+* Get categories +

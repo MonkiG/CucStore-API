@@ -57,3 +57,11 @@ export function loginController (req: Request, res: Response): void {
     };
   })().catch((err) => res.status(500).json({ err }))
 }
+
+export function getPasswordController (): void {
+
+}
+
+export function updatePasswordController (): void {
+
+}
