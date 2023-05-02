@@ -13,10 +13,13 @@ _We're still working on the API._
 * "/api/productos": Get all products from all users (method: GET only)
 * "/api/productos/:nombre": Get all products that match with the parameter ":nombre" (method: GET only)
 
-### User Products
 **The path '/api/usuario/' receives a token in the request headers, which is provided by the API during login."**
 
-* "/api/usuario/productos": GET and POST their products if the user's token is valid (method: GET, POST, DELETE, PUT)
+## User
+* "/api/usuario": Get user info in request body using POST method, update user info and delete user (method: POST, DELETE, PUT)
+
+### User Products
+* "/api/usuario/productos": Handle user products if the user's token is valid (method: GET, POST, DELETE, PUT)
 
 ## Libraries used
 * Express
@@ -33,7 +36,4 @@ _We're still working on the API._
 * Validar correos
 * Recuperar contraseña +
 * Reestablecer contraseña +
-* Get user info by id +
-* Update user info by id +
-* Delete user by id +
-* Get categories +
+
