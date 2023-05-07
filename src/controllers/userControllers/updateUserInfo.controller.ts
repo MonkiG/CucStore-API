@@ -22,7 +22,6 @@ export default function updateUserInfo (req: Request, res: Response): void {
         return
       }
       res.status(200).send(userInfoUpdated)
-      console.log(userInfoUpdated)
     } catch (err) {
       res.status(500).json(err)
     }
