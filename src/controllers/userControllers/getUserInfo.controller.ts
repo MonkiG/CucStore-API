@@ -6,7 +6,7 @@ export default function getUserInfo (req: Request, res: Response): void {
   (async () => {
     try {
       await BD.connectBD()
-      const userInfo = await Usuario.find({ _id: usuario }).select('-contraseña -productos')
+      const userInfo = await Usuario.find({ _id: usuario }).select('-contraseña')
       await BD.disconnectBD()
       if (userInfo.length > 0) {
         res.status(200).json(userInfo)
