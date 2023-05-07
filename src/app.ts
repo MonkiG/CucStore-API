@@ -1,11 +1,12 @@
 import express from 'express'
 import cors from 'cors'
+import * as dotenv from 'dotenv'
+
 import authRoutes from './routes/auth.routes'
 import userProductsRoutes from './routes/userProducts'
 import productsRoutes from './routes/products'
 import categoriesRoutes from './routes/categories'
 import userRoutes from './routes/user.routes'
-import * as dotenv from 'dotenv'
 import { Categoria } from './models/TCategorias.model'
 import * as BD from './helpers/bdActions'
 dotenv.config();
@@ -30,7 +31,7 @@ app.use(userProductsRoutes)
 app.use(categoriesRoutes)
 app.use(userRoutes)
 
-app.get('/', (_, res) => {
+app.get('/api', (_, res) => {
   res.json({
     auth: ['/api/auth/register', '/api/auth/login'],
     userProducts: ['/api/usuario/productos', '/api/usuario/productos/:productId'],

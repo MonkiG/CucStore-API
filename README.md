@@ -22,13 +22,13 @@ _We're still working on the API._
 * "/api/usuario/productos": Handle user products if the user's token is valid (method: GET, POST, DELETE, PUT)
 
 ## Libraries used
-* Express
+* express
 * bcrypt
 * jsonwebtoken
 * mongoose
 * cors
 * dotenv
-
+* socket.io
 ### To do
 * Modularize code to make it cleaner
 * Write unit tests
