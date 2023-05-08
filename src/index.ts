@@ -1,6 +1,10 @@
 import app from './app'
 import { createServer } from 'http'
 import { Server } from 'socket.io'
+import * as dotenv from 'dotenv'
+// import { getChatsByUserId } from './controllers/messagesControllers/getChatsByUserId'
+dotenv.config()
+
 const httpServer = createServer(app)
 const io = new Server(httpServer, {
   cors: {
@@ -8,14 +12,16 @@ const io = new Server(httpServer, {
   }
 })
 const PORT = app.get('port')
-const chatNamespace = io.of('/api/chat')
 
-chatNamespace.on('connection', (socket) => {
-  console.log('a user connected')
-  socket.on('chat message', (msg: any) => {
-    chatNamespace.emit('chat message', msg)
+io.on('connection', (socket) => {
+  socket.emit('mensaje', 'Server xD')
+  console.log('connected')
+  socket.on('mensajeCliente', (data) => {
+    console.log('mensaje recibido')
+    console.log(data)
   })
 })
+
 io.on('disconnect', () => {
   console.log('a user disconnected')
   // Realizar acciones al desconectar un usuario

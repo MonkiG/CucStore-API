@@ -23,4 +23,4 @@ TMessageSchema.set('toJSON', {
     delete returnedObject.__v
   }
 })
-export const Usuario = mongoose.model('TMensaje', TMessageSchema)
+export const Mensaje = mongoose.model('TMensaje', TMessageSchema)
