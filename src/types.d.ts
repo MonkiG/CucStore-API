@@ -29,10 +29,11 @@ export interface IUsuario {
   createdAt: Date
   productos?: Object[]
   telefonos?: string[]
+  isActive: boolean
 }
 
 export type RegistrarUsuario = Omit<IUsuario, 'nombreMarca'
-| 'imgUrl' | 'productos' | 'telefonos'> & {
+| 'imgUrl' | 'productos' | 'telefonos' | 'isActive'> & {
 
   isRegistered?: Boolean
 }

@@ -2,6 +2,7 @@ import app from './app'
 import { createServer } from 'http'
 import { Server } from 'socket.io'
 import * as dotenv from 'dotenv'
+
 // import { getChatsByUserId } from './controllers/messagesControllers/getChatsByUserId'
 dotenv.config()
 
@@ -13,13 +14,14 @@ const io = new Server(httpServer, {
 })
 const PORT = app.get('port')
 
-io.on('connection', (socket) => {
-  socket.emit('mensaje', 'Server xD')
-  console.log('connected')
-  socket.on('mensajeCliente', (data) => {
-    console.log('mensaje recibido')
-    console.log(data)
+const mensajesRoom = io.of('/api/mensajes')
+
+mensajesRoom.on('connection', (socket) => {
+  socket.on('userToken', (_data) => {
+    // storedData = data
   })
+
+  socket.emit('mensajes', 'data')
 })
 
 io.on('disconnect', () => {

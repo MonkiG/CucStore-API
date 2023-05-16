@@ -11,7 +11,8 @@ const TUsuarioSchema = new mongoose.Schema<IUsuario>({
   imgUrl: { type: String, default: null },
   createdAt: { type: Date, default: Date.now },
   productos: [{ type: mongoose.Schema.Types.ObjectId, ref: 'TProducto', default: null }],
-  telefonos: [{ type: String, default: null }]
+  telefonos: [{ type: String, default: null }],
+  isActive: { type: Boolean, default: true }
 })
 
 TUsuarioSchema.set('toJSON', {

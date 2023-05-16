@@ -6,7 +6,7 @@ export function getAllProducts (_req: Request, res: Response): void {
   (async () => {
     try {
       await BD.connectBD()
-      const productos = await Usuario.find({ productos: { $exists: true, $not: { $size: 0 } } }, '-correo -contraseña -telefonos -createdAt')
+      const productos = await Usuario.find({ isActive: true, productos: { $exists: true, $gt: [] } }, '-correo -contraseña -createdAt')
         .populate({
           path: 'productos',
           select: '-usuario',

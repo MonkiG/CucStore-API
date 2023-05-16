@@ -11,8 +11,8 @@ router.get('/api/usuario/productos', verifyToken, getUserProducts)
 
 router.post('/api/usuario/productos', verifyToken, addUserProduct)
 
-router.put('/api/usuario/productos/:productId', verifyToken, editUserProductById)
+router.put('/api/usuario/productos', verifyToken, editUserProductById)
 
-router.delete('/api/usuario/productos/:productId', verifyToken, deleteUserProductById)
+router.delete('/api/usuario/productos', verifyToken, deleteUserProductById)
 
 export default router

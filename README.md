@@ -36,4 +36,5 @@ _We're still working on the API._
 * Validar correos
 * Recuperar contraseña +
 * Reestablecer contraseña +
-
+* Mostrar productos de usuarios activos
+* Subir a dominio
