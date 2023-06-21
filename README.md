@@ -29,6 +29,7 @@ _We're still working on the API._
 * cors
 * dotenv
 * socket.io
+
 ### To do
 * Modularize code to make it cleaner
 * Write unit tests
@@ -38,3 +39,5 @@ _We're still working on the API._
 * Reestablecer contraseña +
 * Mostrar productos de usuarios activos
 * Subir a dominio
+* Agregar busqueda por character
+* Permitir solo un inicio de sesion a la vez
