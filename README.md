@@ -13,7 +13,7 @@ _We're still working on the API._
 * "/api/productos": Get all products from all users (method: GET only)
 * "/api/productos/:nombre": Get all products that match with the parameter ":nombre" (method: GET only)
 
-**The path '/api/usuario/' receives a token in the request headers, which is provided by the API during login."**
+**The path '/api/usuario/' receives a token in the request headers, which is provided during login by the API ."**
 
 ## User
 * "/api/usuario": Get user info in request body using POST method, update user info and delete user (method: POST, DELETE, PUT)
