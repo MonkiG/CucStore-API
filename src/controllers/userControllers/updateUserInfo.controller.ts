@@ -1,6 +1,7 @@
 import { Request, Response } from 'express'
 import * as BD from './../../helpers/bdActions'
 import { Usuario } from './../../models/TUsuarios.model'
+import { hashPassword } from './../../helpers/passwordMethods'
 export default function updateUserInfo (req: Request, res: Response): void {
   const dataToUpdate = req.body
   const { correo, contraseña, ...rest } = dataToUpdate;
@@ -11,6 +12,11 @@ export default function updateUserInfo (req: Request, res: Response): void {
       const userInfo = await Usuario.findById({ _id: dataToUpdate.usuario })
       rest.correo = userInfo?.correo
       rest.contraseña = userInfo?.contraseña
+
+      if ('contraseña' in rest) {
+        rest.contraseña = await hashPassword(contraseña)
+      }
+      console.log(rest)
 
       const userInfoUpdated = await Usuario.findOneAndUpdate(
         { _id: dataToUpdate.usuario },
