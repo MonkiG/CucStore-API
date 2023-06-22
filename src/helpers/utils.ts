@@ -15,9 +15,7 @@ export function toRegistrarProducto (object: any): registrarProducto {
 
 export function toRegistrarUsuario (object: any): RegistrarUsuario {
   const newUser: RegistrarUsuario = {
-    nombres: parseBasicData(object.nombres),
-    apellidoPaterno: parseBasicData(object.apellidoPaterno),
-    apellidoMaterno: parseBasicData(object.apellidoMaterno),
+    nombreCompleto: parseBasicData(object.nombreCompleto),
     contraseña: parseBasicData(object.contraseña),
     correo: parseCorreo(object.correo),
     createdAt: new Date()

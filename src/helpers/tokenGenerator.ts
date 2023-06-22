@@ -5,12 +5,10 @@ import * as dotenv from 'dotenv'
 dotenv.config()
 
 const secret = process.env.JWT_SECRET as string
-export function registerTokenGenerator ({ nombres, apellidoPaterno, apellidoMaterno, correo }: RegistrarUsuario): string {
+export function registerTokenGenerator ({ nombreCompleto, correo }: RegistrarUsuario): string {
   const payload = {
     sub: 'register',
-    name: nombres,
-    firtSurname: apellidoPaterno,
-    lastSurname: apellidoMaterno,
+    name: nombreCompleto,
     email: correo,
     exp: Math.floor(Date.now() / 1000) + (60 * 60 * 7 * 31)
   }

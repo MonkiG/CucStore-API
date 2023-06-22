@@ -19,9 +19,7 @@ export interface IProducto extends registrarProducto {
   puntaje?: Number
 }
 export interface IUsuario {
-  nombres: string
-  apellidoPaterno: string
-  apellidoMaterno: string
+  nombreCompleto: string
   nombreMarca?: string
   correo: string
   contraseña: string

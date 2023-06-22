@@ -13,8 +13,14 @@ export function registerController (req: Request, res: Response): void {
     } else {
       try {
         const newUsuario = toRegistrarUsuario(requestBody)
+        console.log('here1')
+
         const token = registerTokenGenerator(newUsuario)
+        console.log('here2')
+
         await serviciosUsuario.registrarUsuario(newUsuario)
+
+        console.log('here3')
 
         res.status(201).json({
           mensaje: 'Usuario registrado correctamente',

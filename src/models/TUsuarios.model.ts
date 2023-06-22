@@ -2,9 +2,7 @@ import mongoose from 'mongoose'
 import { IUsuario } from './../types'
 
 const TUsuarioSchema = new mongoose.Schema<IUsuario>({
-  nombres: { type: String, required: true },
-  apellidoPaterno: { type: String, required: true },
-  apellidoMaterno: { type: String, required: true },
+  nombreCompleto: { type: String, required: true },
   nombreMarca: String,
   correo: { type: String, required: true },
   contraseña: { type: String, required: true },

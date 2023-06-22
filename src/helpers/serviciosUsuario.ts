@@ -7,9 +7,7 @@ import * as BD from './bdActions'
 export async function registrarUsuario (newUsuario: RegistrarUsuario): Promise<void> {
   const contraseñaEncriptada = await hashPassword(newUsuario.contraseña)
   const registeredUser = new Usuario({
-    nombres: newUsuario.nombres,
-    apellidoPaterno: newUsuario.apellidoPaterno,
-    apellidoMaterno: newUsuario.apellidoMaterno,
+    nombreCompleto: newUsuario.nombreCompleto,
     correo: newUsuario.correo,
     contraseña: contraseñaEncriptada,
     createdAt: newUsuario.createdAt
