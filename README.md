@@ -31,13 +31,13 @@ _We're still working on the API._
 * socket.io
 
 ### To do
-* Modularize code to make it cleaner
-* Write unit tests
-* Implement Web Socket to online chat.
-* Validar correos
-* Recuperar contraseña +
-* Reestablecer contraseña +
-* Mostrar productos de usuarios activos
-* Subir a dominio
-* Agregar busqueda por character
-* Permitir solo un inicio de sesion a la vez
+* Modularize code to make it cleaner 🕙
+* Write unit tests 🕙
+* Implement Web Socket to online chat. 🕙
+* Validate mails 🕙
+* Recover password 🕙
+* Restore password ✅
+* Show active user products ✅
+* Upload to domain ✅
+* Add product search by character 🕙
+* Allor only one login at a time 🕙
