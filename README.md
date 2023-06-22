@@ -33,11 +33,11 @@ _We're still working on the API._
 ### To do
 * Modularize code to make it cleaner 🕙
 * Write unit tests 🕙
-* Implement Web Socket to online chat. 🕙
-* Validate mails 🕙
-* Recover password 🕙
+* Implement Web Socket to online chat. 
+* Validate mails 
+* Recover password 
 * Restore password ✅
 * Show active user products ✅
 * Upload to domain ✅
-* Add product search by character 🕙
+* Permitir solo 3 productos por usuario
 
