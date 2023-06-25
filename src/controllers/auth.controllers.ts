@@ -13,14 +13,10 @@ export function registerController (req: Request, res: Response): void {
     } else {
       try {
         const newUsuario = toRegistrarUsuario(requestBody)
-        console.log('here1')
 
         const token = registerTokenGenerator(newUsuario)
-        console.log('here2')
 
         await serviciosUsuario.registrarUsuario(newUsuario)
-
-        console.log('here3')
 
         res.status(201).json({
           mensaje: 'Usuario registrado correctamente',
@@ -38,24 +34,20 @@ export function loginController (req: Request, res: Response): void {
 
   (async () => {
     if (requestBody.isRegistered === true) {
-      try {
-        const usuario = await serviciosUsuario.logearUsuario(requestBody)
-        const match = await validatePassword(requestBody.contraseña, usuario.contraseña)
+      const usuario = await serviciosUsuario.logearUsuario(requestBody)
+      const match = await validatePassword(requestBody.contraseña, usuario.contraseña)
 
-        if (match) {
-          const token = loginTokenGenerator(usuario)
-          res.status(200).json({
-            mensaje: 'Correcto inicio de sesion',
-            token
-          })
-        } else {
-          res.status(401).json({
-            mensaje: 'Contraseña equivocada'
-          })
-        }
-      } catch (error) {
-        res.status(500).json({ error })
-      };
+      if (match) {
+        const token = loginTokenGenerator(usuario)
+        res.status(200).json({
+          mensaje: 'Correcto inicio de sesion',
+          token
+        })
+      } else {
+        res.status(401).json({
+          mensaje: 'Contraseña equivocada'
+        })
+      }
     } else {
       res.status(404).json({
         mensaje: 'Usuario no registrado'
