@@ -26,7 +26,7 @@ export interface IUsuario {
   imgUrl?: string
   createdAt: Date
   productos?: Object[]
-  telefonos?: string[]
+  telefonos?: string
   isActive: boolean
 }
 

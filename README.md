@@ -39,5 +39,5 @@ _We're still working on the API._
 * Restore password ✅
 * Show active user products ✅
 * Upload to domain ✅
-* Permitir solo 3 productos por usuario
-
+* Allow only three products by user
+* Change phones array to string
