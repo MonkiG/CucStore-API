@@ -28,10 +28,22 @@ export interface IUsuario {
   productos?: Object[]
   telefonos?: string
   isActive: boolean
+  chats: IChat[]
+}
+
+export interface IChat {
+  participantes: IUsuario[]
+  messages: string
+  timestamp: Date
+}
+
+export interface IMensaje {
+  texto: string
+  sender: mongoose.Schema.Types.ObjectId
 }
 
 export type RegistrarUsuario = Omit<IUsuario, 'nombreMarca'
-| 'imgUrl' | 'productos' | 'telefonos' | 'isActive'> & {
+| 'imgUrl' | 'productos' | 'telefonos' | 'isActive' | 'chats' | 'timestamp'> & {
 
   isRegistered?: Boolean
 }
