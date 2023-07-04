@@ -13,9 +13,9 @@ dotenv.config();
 
 (async () => {
   await BD.connectBD()
-  await Categoria.findOneAndUpdate({ nombre: 'dulce' }, { descripcion: 'Productos dulces' }, { upsert: true, new: true, setDefaultOnInser: true })
-  await Categoria.findOneAndUpdate({ nombre: 'salado' }, { descripcion: 'Productos salados' }, { upsert: true, new: true, setDefaultOnInser: true })
-  await Categoria.findOneAndUpdate({ nombre: 'otro' }, { descripcion: 'Productos variados' }, { upsert: true, new: true, setDefaultOnInser: true })
+  await Categoria.findOneAndUpdate({ nombre: 'Dulce' }, { descripcion: 'Productos dulces' }, { upsert: true, new: true, setDefaultOnInser: true })
+  await Categoria.findOneAndUpdate({ nombre: 'Salado' }, { descripcion: 'Productos salados' }, { upsert: true, new: true, setDefaultOnInser: true })
+  await Categoria.findOneAndUpdate({ nombre: 'Otro' }, { descripcion: 'Productos variados' }, { upsert: true, new: true, setDefaultOnInser: true })
   await BD.disconnectBD()
 })().catch(err => console.error(err))
 
