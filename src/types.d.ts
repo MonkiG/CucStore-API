@@ -1,6 +1,6 @@
 import jwt from 'jsonwebtoken'
 
-type categoria = 'salado' | 'dulce' | 'otro'
+type categoria = 'Salado' | 'Dulce' | 'Otro'
 
 export interface TokenData extends jwt.JWTPayload {
   correo: string
@@ -33,13 +33,14 @@ export interface IUsuario {
 
 export interface IChat {
   participantes: IUsuario[]
-  messages: string
-  timestamp: Date
+  messages: IMensaje[]
+  createdAt: Date | string
+  userToken: string
 }
 
 export interface IMensaje {
   texto: string
-  sender: mongoose.Schema.Types.ObjectId
+  from: mongoose.Schema.Types.ObjectId
 }
 
 export type RegistrarUsuario = Omit<IUsuario, 'nombreMarca'

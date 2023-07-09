@@ -41,7 +41,8 @@ export function loginController (req: Request, res: Response): void {
         const token = loginTokenGenerator(usuario)
         res.status(200).json({
           mensaje: 'Correcto inicio de sesion',
-          token
+          token,
+          userId: usuario.id
         })
       } else {
         res.status(401).json({

@@ -3,7 +3,7 @@ import { IMensaje } from './../types'
 
 const TMensaje = new mongoose.Schema<IMensaje>({
   texto: { type: String, required: false },
-  sender: { type: mongoose.Schema.Types.ObjectId }
+  from: { type: mongoose.Schema.Types.ObjectId }
 },
 {
   timestamps: true

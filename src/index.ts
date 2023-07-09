@@ -1,8 +1,7 @@
 import app from './app'
 import { createServer } from 'http'
 import { Server } from 'socket.io'
-
-import getUserChats from './controllers/ChatControllers/getUserChats.controller'
+import socketApp from './controllers/socketApp.controller'
 
 const httpServer = createServer(app)
 const io = new Server(httpServer, {
@@ -10,9 +9,9 @@ const io = new Server(httpServer, {
     origin: '*'
   }
 })
-
-const userChat = io.of('/api/usuario/chats')
-
-userChat.on('connection', getUserChats)
+const sockets = new Map()
+io.on('connection', async (socket) => await socketApp(socket, io, sockets))
+// const userChat = io.of('/api/usuario/chats/chat')
+// userChat.on('connection', getChat)
 
 httpServer.listen(app.get('port'))
