@@ -40,4 +40,5 @@ _We're still working on the API._
 * Show active user products ✅
 * Upload to domain ✅
 * Allow only three products by user
+* Show categories products
 * Change phones array to string
