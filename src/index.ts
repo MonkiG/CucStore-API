@@ -9,8 +9,9 @@ const io = new Server(httpServer, {
     origin: '*'
   }
 })
+
 const sockets = new Map()
-io.on('connection', async (socket) => await socketApp(socket, io, sockets))
+io.on('connection', (socket) => socketApp(socket, io, sockets))
 // const userChat = io.of('/api/usuario/chats/chat')
 // userChat.on('connection', getChat)
 
