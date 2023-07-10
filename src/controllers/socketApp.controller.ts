@@ -1,6 +1,8 @@
 import { Socket } from 'socket.io'
 import { Chat } from './../models/TChat.model'
 import * as BD from './../helpers/bdActions'
+// import { toMessage } from './../helpers/utils'
+// import { Mensaje } from './../models/TMensajes.model'
 
 export default function socketApp (socket: Socket, io: any, socketsMap: Map<string, string>): void {
   console.log('[APP] socket connected')
@@ -9,18 +11,36 @@ export default function socketApp (socket: Socket, io: any, socketsMap: Map<stri
   const user = socket.handshake.headers.user as string
   socketsMap.set(user, socket.id)
 
-  socket.on('disconnect', () => {
+  socket.on('disconnect', async () => {
     console.log('[APP] socket disconnected')
     socketsMap.delete(user)
+    await BD.disconnectBD()
+  })
+
+  socket.on('createUserChat', async ({ usuario, to }) => {
+    /* TODO:
+      Manejar caso en el que el chat si exista
+    */
+    console.log('[CHATS] create chatRoom')
+    await BD.connectBD()
+    const chat = await Chat.findOne({ participantes: { $all: [usuario, to] } }).populate({ path: 'participantes', select: '_id nombreCompleto createdAt imgUrl chats' }).exec()
+    if (chat === null) {
+      await new Chat({ participantes: [usuario, to] }).save()
+      const [populatedChat] = await Chat.find({ participantes: [usuario, to] }).populate({ path: 'participantes', select: '_id nombreCompleto createdAt imgUrl chats' }).exec()
+      const roomId = JSON.stringify(populatedChat._id)
+
+      await joinRoom({ io, roomId, from: usuario, to, socketsMap })
+      io.to(`chatRoom:${roomId}`).emit('newChat', populatedChat)
+    } else {
+      const roomId = JSON.stringify(chat._id)
+      await joinRoom({ io, roomId, from: usuario, to, socketsMap })
+    }
   })
 
   socket.on('getUserChats', async () => {
-    /* TODO:
-      Actualizar chats en tiempo real
-    */
-    await BD.connectBD()
-    const chats = await Chat.find({ participantes: user }).populate({ path: 'participantes', select: 'imgUrl nombreMarca nombreCompleto chats' }).exec()
     console.log('[CHATS] user show')
+    await BD.connectBD()
+    const chats = await Chat.find({ participantes: user }).populate({ path: 'participantes', select: 'imgUrl nombreMarca nombreCompleto chats _id' }).exec()
 
     if (chats.length > 0) {
       socket.emit('chatRooms', chats)
@@ -30,16 +50,33 @@ export default function socketApp (socket: Socket, io: any, socketsMap: Map<stri
     socket.emit('chatRooms', null)
   })
 
-  socket.on('joinRoom', async (roomData) => {
-    console.log('[JoinRoom] socket event')
-    /* TODO:
-        Validar si el usuario no se encuentra ya en ese room
-    */
-    // Obtiene el socket id almacenado en el map usando el id del usuario
-    const fromMapSocketId = socketsMap.get(roomData.from)
-    const toMapSocketId = socketsMap.get(roomData.to)
+  // socket.on('getMessages', (room) => {
+  //   console.log('[Messages] socket event')
 
-    const room = `chatRoom:${roomData.id as string}`
+  //   io.to(`chatRoom:${room.id as string}`).emit('messages', hardcodedChat.reverse())
+  // })
+  // socket.on('message', async (messageData) => {
+  //   const parseredMessage = toMessage(messageData)
+  //   await new Mensaje(parseredMessage).save()
+  //   const message = await Mensaje.findOne({ user }).populate({ path: 'user', select: 'ImgUrl nombreCompleto _id' }).exec()
+
+  //   io.to(`chatRoom:${room.id as string}`).emit('message', message)
+  // })
+}
+
+const joinRoom = async ({ io, roomId, from, to, socketsMap }: any): Promise<void> => {
+  /* TODO:
+    Manejar caso en el que un usuario no este conectado
+  */
+
+  // Obtiene el socket id almacenado en el map usando el id del usuario
+  const room = `chatRoom:${roomId as string}`
+
+  // Si no existe el room, va a crearlo y a unir a los usuarios
+  if (io.sockets.adapter.rooms.has(room) === false) {
+    const fromMapSocketId = socketsMap.get(from)
+    const toMapSocketId = socketsMap.get(to)
+
     // Obtiene el socket de cada usuario
     const fromSocket = io.sockets.sockets.get(fromMapSocketId)
     const toSocket = io.sockets.sockets.get(toMapSocketId)
@@ -58,12 +95,11 @@ export default function socketApp (socket: Socket, io: any, socketsMap: Map<stri
         fromId: ${fromSocket.id as string}
         toId: ${toSocket.id as string}
     `)
-  })
+  }
+}
 
-  socket.on('getMessages', (room) => {
-    console.log('[Messages] socket event')
-
-    const hardcodedChat: any = [
+/*
+   const hardcodedChat: any = [
       {
         _id: 'asdfasdfasdfasdfasdf',
         text: 'Hello developer',
@@ -125,28 +161,4 @@ export default function socketApp (socket: Socket, io: any, socketsMap: Map<stri
         }
       }
     ]
-    socket.on('message', (message) => {
-      const parseredMessage = {
-        _id: message[0]._id,
-        text: message[0].text,
-        createdAt: message[0].createdAt,
-        user: {
-          _id: message[0].user._id,
-          name: 'React Native',
-          avatar: 'https://placeimg.com/140/140/any'
-        }
-      }
-      io.to(`chatRoom:${room.id as string}`).emit('message', parseredMessage)
-    })
-
-    io.to(`chatRoom:${room.id as string}`).emit('messages', hardcodedChat.reverse())
-
-    // if (user !== null) {
-    //   console.log(`[CHAT] socket message ${message as string} in room # ${room as string} to:`)
-    //   io.to(room.id).emit('messages', hardcodedChat)
-    //   io.to(room.id).on('message', (message: any) => {
-    //     console.log(message)
-    //   })
-    // }
-  })
-}
+*/

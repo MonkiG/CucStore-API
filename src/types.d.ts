@@ -40,7 +40,7 @@ export interface IChat {
 
 export interface IMensaje {
   texto: string
-  from: mongoose.Schema.Types.ObjectId
+  user: mongoose.Schema.Types.ObjectId
 }
 
 export type RegistrarUsuario = Omit<IUsuario, 'nombreMarca'

@@ -3,7 +3,7 @@ import { IMensaje } from './../types'
 
 const TMensaje = new mongoose.Schema<IMensaje>({
   texto: { type: String, required: false },
-  from: { type: mongoose.Schema.Types.ObjectId }
+  user: { type: mongoose.Schema.Types.ObjectId }
 },
 {
   timestamps: true
@@ -16,4 +16,4 @@ TMensaje.set('toJSON', {
     delete returnedObject.__v
   }
 })
-export const Chat = mongoose.model('TMensaje', TMensaje)
+export const Mensaje = mongoose.model('TMensaje', TMensaje)

@@ -1,5 +1,14 @@
-import { LogearUsuario, RegistrarUsuario, registrarProducto } from './../types'
+import { LogearUsuario, RegistrarUsuario, registrarProducto, IMensaje } from './../types'
 
+export function toMessage (object: any): IMensaje {
+  const [{ mensaje }] = object
+  const newMessage: IMensaje = {
+    texto: mensaje.texto,
+    user: mensaje.user._id
+  }
+
+  return newMessage
+}
 export function toRegistrarProducto (object: any): registrarProducto {
   const newProduct: registrarProducto = {
     nombre: parseBasicData(object.nombre),
