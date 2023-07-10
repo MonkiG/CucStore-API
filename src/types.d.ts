@@ -39,6 +39,7 @@ export interface IChat {
 }
 
 export interface IMensaje {
+  chat: mongoose.Schema.Types.ObjectId
   texto: string
   user: mongoose.Schema.Types.ObjectId
 }

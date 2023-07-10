@@ -1,10 +1,10 @@
 import { LogearUsuario, RegistrarUsuario, registrarProducto, IMensaje } from './../types'
 
-export function toMessage (object: any): IMensaje {
-  const [{ mensaje }] = object
+export function toMessage (mensaje: any): IMensaje {
   const newMessage: IMensaje = {
-    texto: mensaje.texto,
-    user: mensaje.user._id
+    chat: mensaje.chat,
+    texto: mensaje.text,
+    user: mensaje.user
   }
 
   return newMessage

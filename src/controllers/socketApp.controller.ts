@@ -1,6 +1,8 @@
 import { Socket } from 'socket.io'
 import { Chat } from './../models/TChat.model'
+import { Mensaje } from './../models/TMensajes.model'
 import * as BD from './../helpers/bdActions'
+import { toMessage } from './../helpers/utils'
 // import { toMessage } from './../helpers/utils'
 // import { Mensaje } from './../models/TMensajes.model'
 
@@ -48,6 +50,31 @@ export default function socketApp (socket: Socket, io: any, socketsMap: Map<stri
     }
 
     socket.emit('chatRooms', null)
+  })
+
+  socket.on('getChatMessages', async ({ chatRoom, from, to }) => {
+    console.log('[GetChatMessages] Socket event')
+
+    await joinRoom({ io, roomId: chatRoom, from, to, socketsMap })
+    await BD.connectBD()
+    const chatMessages = await Mensaje.find({ chat: chatRoom })
+
+    if (chatMessages !== null) {
+      io.to(`chatRoom:${chatRoom as string}`).emit('getChatMessages', chatMessages)
+      return
+    }
+
+    io.to(`chatRoom:${chatRoom as string}`).emit('getChatMessages', null)
+  })
+
+  socket.on('newMessage', async messageData => {
+    console.log('[NewMessage] Socket event')
+    const newMessageParsered = toMessage(messageData)
+    await BD.connectBD()
+    const newMessage = await new Mensaje(newMessageParsered).save()
+    const newMessagePopulated = await Mensaje.findOne({ _id: newMessage._id }).populate({ path: 'user', select: '_id nombreCompleto nombreMarca imgUrl' }).exec()
+
+    io.to(`chatRoom:${messageData.chat as string}`).emit('newMessage', newMessagePopulated)
   })
 
   // socket.on('getMessages', (room) => {
