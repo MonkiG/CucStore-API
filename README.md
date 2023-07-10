@@ -33,12 +33,21 @@ _We're still working on the API._
 ### To do
 * Modularize code to make it cleaner 🕙
 * Write unit tests 🕙
-* Implement Web Socket to online chat. 
-* Validate mails 
-* Recover password 
-* Restore password ✅
+* Implement Web Socket to online chat. 🕙
+* Fix chat behaviour when user is disconnected
+* Sort products by stars
+* Sort chats by update time
+* Sort messages by time sent
+* Restore password 
 * Show active user products ✅
-* Upload to domain ✅
+* Upload to domain 
 * Allow only three products by user
 * Show categories products
-* Change phones array to string
+* Change phones array to string ✅
+
+_Domain is required_
+
+* Validate mails 
+* Recover password 
+
+
